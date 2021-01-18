@@ -2,9 +2,10 @@ import tkinter as tk
 from tkinter import StringVar, ttk
 import time
 import datetime
-from tkinter.constants import DISABLED , NORMAL
+from tkinter.constants import DISABLED , NORMAL, W
 from threading import Thread
-
+from winsound import *
+import mp3play
 
 def to_time(seconds):
     return str(datetime.timedelta(seconds=seconds))
@@ -51,28 +52,32 @@ def Counter1():
     # spin2.set(0)
 
 
-
+f = mp3play.load('alarm.mp3')
+play = lambda: f.play()
 
 root = tk.Tk()
 
 
 
 timer1 = tk.StringVar()
-tk.Label(root , textvariable=timer1).grid(row=0 , column=0)
+tk.Label(root , textvariable=timer1 , font=('times')).grid(row=0 , column=0)
 spin1 = tk.IntVar()
 spin1.trace('w', start)
-spinbox1 = tk.Spinbox(root , textvariable=spin1 , from_=0 , to=36000 , width=5)
+spinbox1 = tk.Spinbox(root , textvariable=spin1 , from_=0 , to=36000 , width=5 , font=('times'))
 spinbox1.grid(row=1 , column=0)
-tk.Button(root , text='Start', command=Counter).grid(row=2 , column=0)
+tk.Button(root , text='Start', command=Counter).grid(row=2 , column=0 ,sticky=tk.E+tk.W)
 
 
 timer2 = tk.StringVar()
-tk.Label(root , textvariable=timer2).grid(row=0 , column=1)
+tk.Label(root , textvariable=timer2 , font=('times')).grid(row=0 , column=1)
 spin2 = tk.IntVar()
 spin2.trace('w', start2)
 spinbox2 = tk.Spinbox(root , textvariable=spin2 , from_=0 , to=36000 , width=10)
 spinbox2.grid(row=1 , column=1)
-tk.Button(root , text='Start' , command=Counter1).grid(row=2 , column=1)
+tk.Button(root , text='Start' , command=Counter1).grid(row=2 , column=1,sticky=tk.E+tk.W)
+tk.Button(root , text='Cancel' , command=root.destroy ).grid(row=3 , columnspan=2  ,sticky=tk.E+tk.W)
+
+
 
 
 root.mainloop()
