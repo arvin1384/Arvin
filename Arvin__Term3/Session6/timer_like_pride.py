@@ -25,9 +25,10 @@ def counter():
     global seconds
     while True:
         seconds += 1
-        form = timer.set(format_time(seconds))
+        form = format_time(seconds)
         if len(form) == 7:
             form = "0" + form
+        timer.set(form)
         time.sleep(1)
         if seconds == 86400:
             seconds = 0
