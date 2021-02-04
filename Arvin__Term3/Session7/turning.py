@@ -13,9 +13,19 @@ Your turn: {}
     today = datetime.datetime.now()
     date = today.strftime("%a , %b ,%d , %Y")
     time = today.strftime("%H:%M:%S")
-    print(msg.format(number.get() , date ,time ,1))
+    poi = len(waiting)
+    waiting.append(
+        {
+        'number' : number.get() , 
+        'date' : date,
+        'time' : time,
+        'POI' : poi
+        }
+    )   
+    print(msg.format(number.get() , date ,time ,poi))
+    print(waiting)
 
-
+waiting  = []
 root  = tk.Tk()
 number = tk.IntVar()
 text_box  = tk.Text(root , bg='khaki', width=21 , height=8)
