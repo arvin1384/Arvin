@@ -1,0 +1,16 @@
+[
+    {
+        "username": "arvin",
+        "Password": "ec4e62fc49caaa9d9e2b3cfded2d6f5e4e9bb895",
+        "created_at": "2021-02-15 18:14:14",
+        "card_number": 6312265137174074,
+        "balance": 10000
+    },
+    {
+        "username": "arvin",
+        "Password": "bdbb0fbcd5a8597e939bd73d284d7628e36a8923",
+        "created_at": "2021-02-18 11:56:37",
+        "card_number": 6312265137184052,
+        "balance": 10000
+    }
+]

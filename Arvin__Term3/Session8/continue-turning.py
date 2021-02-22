@@ -2,6 +2,7 @@ import tkinter as tk
 import datetime 
 import json
 
+
 def pressed():
     msg= """Welcome
 Your turn: {}
@@ -16,7 +17,7 @@ Your turn: {}
     poi = len(waiting)
     waiting.append(
         {
-        'number' : number.get() , 
+        'number' : number.get(), 
         'date' : date,
         'time' : time,
         'POI' : poi
@@ -39,10 +40,10 @@ def operator(operator_number):
         poped['call'] = datetime.datetime.now().strftime("%H:%M:%S")
         poped['operator'] = operator_number
         addad[operator_number].set(poped['number'])
-        with open('Arvin_Term3/data.json' , 'r') as file:
+        with open('Arvin/data.json' , 'r') as file:
            file_json = json.load(file)
         file_json.append(poped)
-        with open('Arvin_Term3/data.json' , 'w') as outfile:
+        with open('Arvin/data.json' , 'w') as outfile:
             json.dump(file_json ,outfile , indent=4)
 
 
