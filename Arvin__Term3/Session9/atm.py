@@ -10,7 +10,7 @@ root = tk.Tk()
 conf = {
     'font' : ('times' , 25)
 }
-
+ind = 0
 person = None
 menu = tk.Toplevel()
 
@@ -50,6 +50,7 @@ def confirm():
 
 
 
+
 def sha1(password):
     return hashlib.sha1(password.encode('utf-8')).hexdigest()
 
@@ -62,7 +63,7 @@ def created_at_():
 
 ############################### def login button ######################
 def log_in():
-    global person
+    global person , ind
     names = read_json('names.json')
     for name in  names:
         if name['username'] == username_l.get():
@@ -72,27 +73,36 @@ def log_in():
                 person = name
                 messagebox.showinfo(title='Success!' , message='You Loged-in successfully!')
                 return None
+        ind += 1
     messagebox.showerror(title='Failed', message='Username or password Invalid!')
 
 
 ######################### withdraw ####################
 def withdraw():
     def withdrawal():
+        global person
         amount = withdraw_amount.get()
-        persons = read_json('names.json')
-        for p in persons:
-            p["username"] == person["username"]:
-            pass
-        if person['balance'] > amount:
-            messagebox.showinfo(title='Success!' , message='Withdraw  successfully!!!')
+        if person["balance"] > amount:
+            names = read_json('names.json')
+            names[ind]["balance"] -= amount
+            write_json('names.json' , names)
+            messagebox.showinfo(title='Successfully Done!' , message='Withdraw  successfully!!!')
         else:
             messagebox.showerror(title='Failed', message='Not enough Money!!')
+
+        # persons = read_json('names.json')
+        # for p in persons:
+        #     if p["username"] == person["username"]:
+        #         if p["balance"] > amount:
+        #             messagebox.showinfo(title='Success!' , message='Withdraw  successfully!!!')
+        #         else:
+        #             messagebox.showerror(title='Failed', message='Not enough Money!!')
 
     withdraw_root  = tk.Toplevel()
     withdraw_amount = tk.IntVar()
     tk.Entry(withdraw_root , textvariable=withdraw_amount , cnf=conf).grid(row=0 , column =0 , sticky=tk.E + tk.W)
     Button(withdraw_root , text='Withdraw' , cnf=conf , command=withdrawal).grid(row=1 , column= 0 , sticky=tk.E + tk.W)
-    Button(withdraw_root , text='Close' , cnf=conf).grid(row=2 , column=0 , sticky=tk.E + tk.W)
+    Button(withdraw_root , text='Close' , cnf=conf , command=withdraw_root.destroy).grid(row=2 , column=0 , sticky=tk.E + tk.W)
 
 
 
