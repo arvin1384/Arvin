@@ -4,9 +4,6 @@ from creature import Creature
 class human(Creature):
     pass
 
-
-
-
         
 
 class monster:
