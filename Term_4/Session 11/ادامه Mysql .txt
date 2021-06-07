@@ -1,0 +1,5 @@
+UPDATE `pro`.`students` SET `email` = 'Arvand@gmail.com' WHERE (`id` = '2');
+ALTER TABLE students ADD nocode INT;
+alter table students drop or add column paakkardani;
+ALTER TABLE students MODIFY COLUMN column_name=nocode datatype;
+
